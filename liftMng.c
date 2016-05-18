@@ -120,7 +120,7 @@ int main(int argc, char *argv[]) {
 
             switch(code){
               case REQUEST_SHUTDOWN:
-                printf("Client is shutting down\n");
+                printf("Client đang đóng \n");
                 exitClient(fd, &readfds, client_array, &num_clients);
                 break;
               /**
@@ -138,7 +138,7 @@ int main(int argc, char *argv[]) {
                 write(fd, &msg, sizeof (struct message));
                 break;
               case REQUEST_FLOOR:
-                printf("Floor %d is requested\n", (int)msg.floor);
+                printf("Tầng %d được gọi\n", (int)msg.floor);
                 sendMsgRequest(msg);
                 break;
               /**

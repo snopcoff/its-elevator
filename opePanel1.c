@@ -41,7 +41,7 @@ int main(void) {
   /*Client==================================================*/
   floor.floorNo = 1;
 
-  printf("*** Floor %d starts connecting...\n", floor.floorNo);
+  printf("*** Tầng %d đang kết nối...\n", floor.floorNo);
   fflush(stdout);
 
   /* Create a socket for the client */
@@ -83,7 +83,7 @@ int main(void) {
 
           if (clientid < 0){ /* set client id before start */
             if (msg.type == CONNECT_ACCEPTED){
-              printf("\nConnect request is accepted\n");
+              printf("\nYêu cầu kết nối thành công\n");
               setupMessage(&msg, REQUEST_JOIN, floor.floorNo);
               write(sockfd, &msg, sizeof(struct message));
             } else if (msg.type == JOIN_ACCEPTED){
@@ -107,7 +107,7 @@ int main(void) {
                 // printf("Door opens!\n");
                 break;
               case ELEVATOR_APPEAR:
-                printf("Elevator appears in this floor (%d)\n", (int)msg.floor);
+                printf("Thang máy đang ở tầng(%d)\n", (int)msg.floor);
                 break;
               case SHUTDOWN_SERVER:
                 close(sockfd); //close the current client
@@ -120,13 +120,13 @@ int main(void) {
           fscanf(stdin, "%d", &floorRequest);
           if (floorRequest == -1){
           } else if (floorRequest == 0) {
-            printf("Floor controller is shutting down\n");
+            printf("\n");
             setupMessage(&msg, REQUEST_SHUTDOWN, 0);
             write(sockfd, &msg, sizeof(struct message));
             close(sockfd); //close the current client
             exit(0); //end program
           } else if (floorRequest > 5){
-            printf("There are only 5 floors!\n");
+            printf("Chỉ có 5 tầng!\n");
           } else{
             setupMessage(&msg, REQUEST_FLOOR, floorRequest);
             write(sockfd, &msg, sizeof(struct message));
