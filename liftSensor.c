@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 
   // process message
   printf("[LIFTSENSOR]\n");
-  printf("Height Floor1\tFloor2\tFloor3\tFloor4\tFloor5\n");
+  printf("Height Tầng 1\tTầng 2\tTầng 3\tTầng 4\tTầng 5\n");
   while(1){ 
     sendMsgRequest();
     waitMsg(MSG_TYPE_SENSOR_RESPONSE);
