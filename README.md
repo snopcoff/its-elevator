@@ -7,6 +7,10 @@ This repo is for ITSS project
 + Default host: local host
 + With 5 floors
 
+##Quick start:
+		make
+		sh script.sh
+
 ##Usage:
 
 + Lift Management (liftMng)
