@@ -25,11 +25,11 @@ int main(int argc, char *argv[]) {
 
   /*Server==================================================*/
   if(argc != 1){
-    printf("Invalid parameter.\nUsage: server\n");
+    printf("Sai tham số.\nUsage: server\n");
     exit(0);
   }
 
-  printf("\n*** Server program starting (enter \"quit\" to stop): \n");
+  printf("\n*** Server đang khởi động (enter \"quit\" to stop): \n");
   fflush(stdout);
 
   /* Create and name a socket for the server */
@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
             setupMessage( &msg, CONNECT_ACCEPTED, 0);
             write(client_sockfd, &msg, sizeof(struct message));
           } else {
-            printf("Too much connection\n");
+            printf("Quá nhiều kết nối\n");
             setupMessage(&msg, CONNECT_REJECTED, 0);
             write(client_sockfd, &msg, sizeof(struct message));
             close(client_sockfd);

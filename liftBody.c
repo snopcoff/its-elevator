@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
     fclose(f);
   }
 
-  printf("\n*** Waiting for connection...\n");
+  printf("\n*** Đang đợi kết nối...\n");
   fflush(stdout);
 
   /* Create a socket for the client */
@@ -156,7 +156,7 @@ void updateState(struct message msg){
     case LIFT_UP:      
       elevator.state = ELEVATOR_STATE_MOVING;
       elevator.height += ELEVATOR_SPEED;            
-      printf("^ UP - %f\n", elevator.height);
+      printf("^ LÊN - %f\n", elevator.height);
       notifyMovement();
       break;
     case LIFT_DOWN:      
@@ -164,22 +164,22 @@ void updateState(struct message msg){
       elevator.height -= ELEVATOR_SPEED;
       if (elevator.height < 0) elevator.height = 0;      
       notifyMovement();
-      printf("v DOWN - %f\n", elevator.height);
+      printf("v XUỐNG - %f\n", elevator.height);
       break;
     case LIFT_STOP:
-      printf("- STOP: ");
+      printf("- Dừng: ");
       elevator.state = ELEVATOR_STATE_STOP;
       if (msg.floor != 1){
-        printf("Cho 3 giay chuyen do...\n");
+        printf("Chờ 3s để chuyển đồ...\n");
         msleep(ELEVATOR_WAITING_TIME);
-        printf("Done! Door closed. Start moving down...\n");
+        printf("Xong! ĐÓng cửa. Thang máy đi xuống...\n");
         setupMessage(&msg, ELEVATOR_REQUEST_SUCCESS, 0);
         write(sockfd, &msg, sizeof(struct message));
       } else {
-        printf("Back to floor1.\n");
+        printf("Trở về tầng 1.\n");
         msleep(ELEVATOR_WAITING_TIME);
-        printf("Done!\n");
-        printf("Door opens.\n");
+        printf("Xong!\n");
+        printf("Cửa mở.\n");
         setupMessage(&msg, ELEVATOR_REQUEST_SUCCESS, 0);
         write(sockfd, &msg, sizeof(struct message));
       }
